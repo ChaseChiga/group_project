@@ -57,6 +57,7 @@ class User:
         is_valid = True
         if len(data["email"]) < 1:
             flash("Email is required")
+            is_valid = False
         elif not EMAIL_REGEX.match(data['email']):
             flash('Invalid email format')
             is_valid = False
@@ -84,4 +85,6 @@ class User:
         if (regex.search(data['password']) == None): #this should search for special characters. None is if there aren't any
             flash("Password must include a special character")
             is_valid = False
+
         return is_valid
+    

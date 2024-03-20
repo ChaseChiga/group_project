@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bgimg {
+    background-image:url(../static/img/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgimg2 {
+    background-image:url(../static/img/gulfer-ergin-LUGuCtvlk1Q-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgimg3 {
+    background-image:url(../static/img/ed-robertson-eeSdJfLfx1A-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.move_to_center {
+    margin: 0 auto;
+}
+.w {
+    width: 40px;
+}

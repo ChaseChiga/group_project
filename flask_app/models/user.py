@@ -1,4 +1,4 @@
-from app.config.mysqlconnector import MySQLConnection
+from flask_app.config.mysqlconnector import MySQLConnection
 from flask import flash
 import re
 

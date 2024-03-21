@@ -22,8 +22,8 @@ class User:
         query = """
             INSERT INTO users (first_name, last_name, email, password)
             VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s)"""
-        result = MySQLConnection(cls.DB).query_db(query, data)
-        return result
+        results = MySQLConnection(cls.DB).query_db(query, data)
+        return results
     
     @classmethod
     def get_by_email(cls, email):

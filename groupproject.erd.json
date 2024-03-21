@@ -4,10 +4,17 @@
   "settings": {
     "width": 2000,
     "height": 2000,
+<<<<<<< HEAD
     "scrollTop": -8,
     "scrollLeft": -597,
     "zoomLevel": 1,
     "show": 447,
+=======
+    "scrollTop": 0,
+    "scrollLeft": 0,
+    "zoomLevel": 1,
+    "show": 431,
+>>>>>>> main
     "database": 4,
     "databaseName": "",
     "canvasType": "ERD",
@@ -30,6 +37,7 @@
   },
   "doc": {
     "tableIds": [
+<<<<<<< HEAD
       "2ZdINEFdkWR618Zmwh9yl",
       "axhhu-FzdptxaoVrt3auO",
       "FDGxXLZFY9svl-_QSPJPv",
@@ -40,6 +48,11 @@
       "3duN573MuvW6LDnDFUGrl",
       "_aytTpi6GrSoPUHoKTPsO"
     ],
+=======
+      "2ZdINEFdkWR618Zmwh9yl"
+    ],
+    "relationshipIds": [],
+>>>>>>> main
     "indexIds": [],
     "memoIds": []
   },
@@ -50,6 +63,7 @@
         "name": "users",
         "comment": "",
         "columnIds": [
+<<<<<<< HEAD
           "grura6SfcDXZu-rBnAS5e",
           "ttyTMbZg44UYSsN0GcL1A",
           "J35aU_bmmYGrS_0-cyQOH",
@@ -66,12 +80,23 @@
         "ui": {
           "x": 459,
           "y": 239,
+=======
+          "grura6SfcDXZu-rBnAS5e"
+        ],
+        "seqColumnIds": [
+          "grura6SfcDXZu-rBnAS5e"
+        ],
+        "ui": {
+          "x": 200,
+          "y": 100,
+>>>>>>> main
           "zIndex": 2,
           "widthName": 60,
           "widthComment": 60,
           "color": ""
         },
         "meta": {
+<<<<<<< HEAD
           "updateAt": 1710992342116,
           "createAt": 1710909136912
         }
@@ -165,12 +190,18 @@
           "updateAt": 1710992342116,
           "createAt": 1710914425124
         }
+=======
+          "updateAt": 1710909143864,
+          "createAt": 1710909136912
+        }
+>>>>>>> main
       }
     },
     "tableColumnEntities": {
       "grura6SfcDXZu-rBnAS5e": {
         "id": "grura6SfcDXZu-rBnAS5e",
         "tableId": "2ZdINEFdkWR618Zmwh9yl",
+<<<<<<< HEAD
         "name": "id",
         "comment": "",
         "dataType": "INT",
@@ -178,12 +209,22 @@
         "options": 11,
         "ui": {
           "keys": 1,
+=======
+        "name": "",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+>>>>>>> main
           "widthName": 60,
           "widthComment": 60,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
+<<<<<<< HEAD
           "updateAt": 1710992342116,
           "createAt": 1710909138647
         }
@@ -759,6 +800,14 @@
         }
       }
     },
+=======
+          "updateAt": 1710909138647,
+          "createAt": 1710909138647
+        }
+      }
+    },
+    "relationshipEntities": {},
+>>>>>>> main
     "indexEntities": {},
     "indexColumnEntities": {},
     "memoEntities": {}
@@ -776,6 +825,7 @@
       "tableColumnEntities",
       1710909138646,
       -1,
+<<<<<<< HEAD
       {
         "name": 1710991968850,
         "dataType": 1710913984993,
@@ -1044,6 +1094,8 @@
       "relationshipEntities",
       1710914565349,
       1710914573759,
+=======
+>>>>>>> main
       {}
     ]
   }

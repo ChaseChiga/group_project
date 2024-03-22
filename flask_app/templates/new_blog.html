@@ -17,8 +17,7 @@
             <div class="col-md bg-secondary rounded p-4">
                 <h2 class="text-center mt-2">New Blog</h2>
                 <form class="w-50 move_to_center" action="" method="">
-                    <label for="creator_name">Creator Name</label>
-                    <input class="form-control mb-2" type="text" name="creator_name">
+                    <input type="hidden" name="user.name" value="{{user.first_name}} {{user.last_name}}">
                     <label for="article_name">Article Name</label>
                     <input class="form-control mb-2" type="text" name="article_name">
                     <label for="catagory">Choose a Catagory Below</label>

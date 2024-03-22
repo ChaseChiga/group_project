@@ -23,8 +23,10 @@ class Article:
         results = MySQLConnection(cls.DB).query_db(query, data)
         return results
     
+
     @classmethod
     def checked_favorite(cls,data):
+        # inputs: session['user_id'] & <int:{{"article"id}}
         query = """
                 SELECT *
                 FROM favorites
@@ -36,14 +38,21 @@ class Article:
             return False
         return results
     
-        # contollers code notes
+        # contollers code notes: 
             # if Account.checked_favorites(user_id):
                                         # Before user liking this article we have to check
                                         # if they have like the article already
-            # "if true we have to delete/ unfavorite it"
-            # Account.unfavorite_article
+                                        # "if true we have to delete/ unfavorite it"
+                # Account.unfavorite_article
             #else:
                 #  Account.favorite_article
+        
+        # Front end & Controller notes:
+        # Is it possible where we can have the articles that have been favorited by the user
+            # to have an visual indecator?
+            # Ryan's theory code theory
+                # Two ways we can do it:
+                # One use Article.checked_favorite if runs true. Have the favorite updated
         
     @classmethod
     def favorite_article(cls,data):
@@ -71,14 +80,14 @@ class Article:
     def show_all_articles(cls,data):
         # This will display all articles, the author, and the amount of likes they gathered
         query = """ 
-                SELECT articles.id, articles.title,articles.catagory, articles.content, users.first_name,users.last_name, COUNT(favorites.user_id) AS 'favorites' 
+                SELECT articles.id, articles.title AS 'article_name',articles.catagory, articles.content AS 'article_content', users.first_name, users.last_name, COUNT(favorites.user_id) AS 'likes_counter' 
                 FROM articles
 				LEFT JOIN favorites ON articles.id = favorites.article_id
                 JOIN users ON users.id = articles.user_id
                 group BY articles.id, articles.title,articles.catagory, articles.content, users.first_name
                 """
         results = MySQLConnection(cls.DB).query_db(query, data)
-        if results == ():
+        if results == (): # This will premature stop the code if there are no articles made if a user logs in
             return results
         post = cls(results[0])
         for details in results:
@@ -168,3 +177,4 @@ class Article:
         if len(form['content']) > 500:
             flash('Max Character limit is 500')
         return is_valid
+    

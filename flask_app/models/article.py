@@ -5,7 +5,7 @@ import re
 
 
 class Article:
-    DB = 'Group_project_schema'
+    DB = 'group_project_schema'
     def __init__(self,data):
         self.id = data['id']
         self.title= data['title']

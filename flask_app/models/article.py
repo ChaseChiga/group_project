@@ -5,7 +5,7 @@ import re
 
 
 class Article:
-    DB = 'Group_project_schema'
+    DB = 'group_project_schema'
     def __init__(self,data):
         self.id = data['id']
         self.title= data['title']
@@ -92,12 +92,12 @@ class Article:
         post = cls(results[0])
         for details in results:
             articles_post = {
-                'title': details['tiles'],
-                'catagory': details['catagory'],
-                'content': details['content'],
+                'title': details['article_name'],
+                'content': details['catagory'],
+                'content': details['article_content'],
                 'first_name': details['first_name'],
                 'last_name': details['last_name'],
-                'favorites': details['favorties']
+                'likes_counter': details['likes_counter']
             }
         post.articles.append(User(articles_post))
         return results
@@ -172,9 +172,12 @@ class Article:
             is_valid = False
         if len(form['catagory'])  < 1:
             flash('Please select catagory')
+            is_valid = False
         if len(form['content']) < 1:
             flash('Please provided your article details')
+            is_valid = False
         if len(form['content']) > 500:
             flash('Max Character limit is 500')
+            is_valid = False
         return is_valid
     

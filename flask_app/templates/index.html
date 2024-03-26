@@ -40,16 +40,32 @@
                 </div>
                 <div class="container-sm m-5 p-2">
                     <div class="row">
-                        <div class="col-md-8">
+
+                        <div class="col-md-4">
                             <p>A Story by: {{ article.creator.first_name }} {{ article.creator.last_name }}</p>
                         </div>
-                        <div class="col-md-1 d-flex">
+
+                        <div class="col-md-4"> 
+                            {% if article.user_id == session["user_id"] %}
+                                <a class="btn btn-danger" href="/articles/{{article.id}}">View</a> |
+                                <a class="btn btn-warning" href="/articles/edit/{{article.id}}"> Edit</a> |
+                                <a class="btn btn-danger" href="/article/{{article.id}}/destroy">Delete</a>
+                            {% else %}
+                                <a href="/articles/{{article.id}}">View</a>
+                            {% endif %}
+                        </div>  
+
+
+
+                        <div class="col-md-1">
                             <!-- --------------  Here is the form for the likes counter   ------------------ -->
-                            <form class="d-flex" action="/article/like" method="POST">
+                            <form class="" action="/article/like" method="POST">
                                 <input type="hidden" name="user_id" value="{{user_id}}">
                                 <input type="hidden" name="article_id" value="{{article.id}}">
-                                <button class="btn btn-link" type="submit"><span class="material-symbols-outlined">favorite</span></button>
-                                <p>{{article.likes_counter}}</p>
+                                <div class="d-flex align-items-end">
+                                    <button class="btn btn-link" type="submit"><span class="material-symbols-outlined">favorite</span></button>
+                                    <p>{{article.likes_counter}}</p>
+                                </div>
                             </form>
                             <!-- --------------- End form for the likes counter ------------------------ -->
                         </div>
@@ -57,15 +73,6 @@
                     <div class="row">
                         <span class="border-bottom border border-dark w-75 mb-1"></span>
                     </div>
-                    <div>
-                        {% if article.user_id == session["user_id"] %}
-                            <a class="btn btn-danger" href="/articles/{{article.id}}">View</a> |
-                            <a class="btn btn-warning" href="/articles/edit/{{article.id}}"> Edit</a> |
-                            <a class="btn btn-danger" href="/article/{{article.id}}/destroy">Delete</a>
-                        {% else %}
-                            <a href="/articles/{{article.id}}">View</a>
-                        {% endif %}
-                    </div>    
                 </div>
             {% endfor %}
 

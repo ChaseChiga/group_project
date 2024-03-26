@@ -15,25 +15,27 @@
         <div class="row">
             <div class="col-md bg-secondary rounded-circle p-4">
                 <h2 class="text-center mt-2">Register</h2>
-                <form class="w-50 move_to_center" action="" method="">
-                    <label for="fname">First Name</label>
-                    <input class="form-control mb-2" type="text" name="fname">
-                    <label for="lname">Last Name</label>
-                    <input class="form-control mb-2" type="text" name="lname">
+                <form class="w-50 move_to_center" action="/register" method="post">
+                    <label for="first_name">First Name</label>
+                    <input class="form-control mb-2" type="text" name="first_name">
+                    <label for="last_name">Last Name</label>
+                    <input class="form-control mb-2" type="text" name="last_name">
                     <label for="email">Email</label>
                     <input class="form-control mb-2" type="text" name="email">
                     <label for="password">Password</label>
                     <input type="password" class="form-control mb-2" name="password">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input class="form-control" type="password" name="confirm-password">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input class="form-control" type="password" name="confirm_password">
                     <div class="text-end">
-                        <button class="mt-2 mb-3 btn btn-success">Create</button>
+                        <button class="mt-2 mb-3 btn btn-success">Register</button>
                     </div>
                 </form>
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for m in messages %}
-                            <p class="text-danger">{{m}}</p>
+                        <div class="alert alert-danger" role="alert">
+                            <p>{{m}}</p>
+                        </div>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}

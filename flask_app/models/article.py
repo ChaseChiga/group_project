@@ -16,7 +16,7 @@ class Article:
         self.title = data.get("article_name")
         self.content = data.get("article_content")
         self.catagory = data.get("catagory")
-
+        self.likes_counter = data.get('likes_counter')
         self.user_id = data.get("user_id")
         self.creator = None
 
@@ -64,7 +64,7 @@ class Article:
     def favorite_article(cls, data):
         query = """ 
                 INSERT INTO favorites (user_id,article_id)
-                VALUE (%(user_id)s,%(articles_id)s)
+                VALUE (%(user_id)s,%(article_id)s)
                 """
         results = MySQLConnection(cls.DB).query_db(query, data)
         return results
@@ -76,10 +76,27 @@ class Article:
                 FROM favorites
                 WHERE user_id = %(user_id)s
                 AND
-                articles_id = %(article)s
+                article_id = %(article_id)s
                 """
         results = MySQLConnection(cls.DB).query_db(query, data)
         return results
+    
+    @classmethod
+    def check_favorite(cls, data):
+        query = """ 
+                SELECT *
+                From favorites
+                WHERE 
+                user_id = %(user_id)s
+                AND 
+                article_id = %(article_id)s
+                """
+        print(data)
+        results = MySQLConnection(cls.DB).query_db(query, data)
+        if results:
+            return True
+        else:
+            return False
 
     # READ
     # @classmethod
@@ -145,7 +162,7 @@ class Article:
                 group BY articles.id, articles.title,articles.catagory, articles.content, users.first_name
                   """
         results = connectToMySQL(cls.DB).query_db(query)
-        print("results")
+        print("results!!!!!!!!!!!")
         print(results)
         all_articles = []
 

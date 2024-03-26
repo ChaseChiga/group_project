@@ -34,7 +34,7 @@ def create():
         return redirect("/")
 
     user_id = session["user_id"]
-    user = User.get_by_id(user_id)  
+    user = User.get_by_id(user_id)
     return render_template("new_blog.html", user=user)
 
 
@@ -59,6 +59,7 @@ def add_blog():
     print(data)
     return redirect("/dashboard")
 
+
 @app.route("/articles/<int:article_id>")
 def get_one(article_id):
     if "user_id" not in session:
@@ -69,6 +70,7 @@ def get_one(article_id):
     print("inside display page")
     print(article)
     return render_template("show.html", article=article)
+
 
 # @app.route("/create", methods=["POST"])
 # def create_blog():
@@ -81,13 +83,14 @@ def get_one(article_id):
 #     # Pass user information to the template
 #     return render_template("new_blog.html", user=user)
 
+
 @app.route("/articles/edit/<int:article_id>")
 def edit_article(article_id):
     if "user_id" not in session:
         return redirect("/")
     user_id = session["user_id"]
     article = Article.get_by_id(article_id)
-    print("article is",article)
+    print("article is", article)
     return render_template("edit.html", article=article)
 
 
@@ -108,14 +111,12 @@ def update(article_id):
         "user_id": user_id,
     }
 
-
     Article.update_article(article_data)
     return redirect(f"/articles/{article_id}")
+
 
 @app.route("/article/<int:article_id>/destroy")
 def delete_article(article_id):
     print("inside destroy")
     Article.delete(article_id)
     return redirect("/dashboard")
-
-    

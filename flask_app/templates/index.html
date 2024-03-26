@@ -13,38 +13,49 @@
         <div class="row">
             <nav class="navbar navbar-dark bg-dark justify-content-between rounded p-2">
                 <a class="navbar-brand" href="">App Name</a>
-                <button class="btn btn-primary my-2 my-sm-0" type="submit">Logout</button>
+                <a href="/logout" class="btn btn-success">Logout</a>
             </nav>
         </div>
         <div class="row">
             <div class="text-end m-2">
-                <a href="" class="btn btn-success">Create A Blog</a>
+                <a href="/create" class="btn btn-success">Create A Blog</a>
             </div>
         </div>
-        {% if data %}
-            {% for d in data %}
-        <div class="row">
-            <div class="col-md p-4">
-                <div class="text-center">
-                    <a href="" class="text-decoration-none text-dark">{{d.article_name}}</a>
+        {% if articles %}
+            {% for article in articles %}
+                <div class="row">
+                    <div class="col-md p-4">
+                        <div class="text-center">
+                            <a href="/articles/{{article.id}}" class="text-decoration-none text-dark">{{article.title }}</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container-sm m-5 p-2">
-            <div class="row">
-                <div class="col-md-8">
-                    <p>{{d.creator_name}}</p>
+                <div class="container-sm m-5 p-2">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>{{ article.creator.first_name }} {{ article.creator.last_name }}</p>
+                        </div>
+                        <div class="col-md-1 d-flex">
+                            <a href=""><span class="material-symbols-outlined">favorite</span></a>
+                            <p>{{article.likes_counter}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="border-bottom border border-dark w-75"></span>
+                        
+                    </div>
+                    <div>
+                        {% if article.user_id == session["user_id"] %}
+                            <a href="/articles/{{article.id}}">View</a> |
+                            <a href="/articles/edit/{{article.id}}"> Edit</a> |
+                            <a href="/article/{{article.id}}/destroy">Delete</a>
+                        {% else %}
+                            <a href="/articles/{{article.id}}">View</a>
+                        {% endif %}
+                    </div>    
                 </div>
-                <div class="col-md-1 d-flex">
-                    <a href=""><span class="material-symbols-outlined">favorite</span></a>
-                    <p>{{d.likes_counter}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <span class="border-bottom border border-dark w-75"></span>
-            </div>
-        </div>
             {% endfor %}
+
         {% else %}
             <p>No Data</p>
         {% endif %}

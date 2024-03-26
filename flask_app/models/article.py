@@ -8,15 +8,6 @@ import re
 
 
 class Article:
-<<<<<<< HEAD
-    DB = 'group_project_schema'
-    def __init__(self,data):
-        self.id = data['id']
-        self.title= data['title']
-        self.content = data['content']
-        self.catagory = data['catagory']
-        self.articles = []
-=======
     DB = "group_project_schema"
 
     def __init__(self, data):
@@ -27,7 +18,6 @@ class Article:
 
         self.user_id = data.get("user_id")
         self.creator = None
->>>>>>> origin/Swetha's-branch
 
     # CREATE
     @classmethod

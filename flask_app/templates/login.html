@@ -17,20 +17,24 @@
                 <p class="display-5 mt-5 bg-light rounded p-2">Maybe A slogan Here (Nike Just Do It) LOL</p>
             </div>
             <div class="col-md-4">
-                <form class="bg-secondary p-5 rounded" action="" method="">
+                <form class="bg-secondary p-5 rounded" action="/login" method="post">
                     <h2>Login Here</h2>
                     <label for="">Email</label>
                     <input class="form-control mt-2" type="text" name="email">
                     <label for="">Password</label>
-                    <input type="password" class="form-control mt-2">
+                    <input type="password" class="form-control mt-2" name="password">
                     <div class="text-end">
-                        <button class="mt-4 btn btn-success">Login</button>
+                        <a href="/create/account" class="btn btn-primary">Create Account</a>
+                        <button type="submit" class="btn btn-success">Login</button>
                     </div>
+
                 </form>
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for m in messages %}
-                            <p class="text-danger">{{m}}</p>
+                        <div class="alert alert-danger" role="alert">
+                            <p>{{m}}</p>
+                        </div>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}

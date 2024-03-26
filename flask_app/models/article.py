@@ -8,6 +8,7 @@ import re
 
 
 class Article:
+  
     DB = "group_project_schema"
 
     def __init__(self, data):

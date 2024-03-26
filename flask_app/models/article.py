@@ -16,7 +16,7 @@ class Article:
         self.title = data.get("article_name")
         self.content = data.get("article_content")
         self.catagory = data.get("catagory")
-
+        self.likes_counter = data.get('likes_counter')
         self.user_id = data.get("user_id")
         self.creator = None
 
@@ -162,7 +162,7 @@ class Article:
                 group BY articles.id, articles.title,articles.catagory, articles.content, users.first_name
                   """
         results = connectToMySQL(cls.DB).query_db(query)
-        print("results")
+        print("results!!!!!!!!!!!")
         print(results)
         all_articles = []
 

@@ -19,6 +19,7 @@ def get_all_articles():
         return redirect("/")
     articles = Article.get_all()
     print("this")
+    print(Article.get_all())
     print(articles)
     user_id = session['user_id']
     print(f"!!!!!!!!!{user_id}!!!!!!!!!!")

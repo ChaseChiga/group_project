@@ -1,4 +1,4 @@
-from group_project.flask_app.config.mysqlconnector import (
+from flask_app.config.mysqlconnector import (
     MySQLConnection,
     connectToMySQL,
 )
@@ -32,17 +32,18 @@ class User:
         return results
 
     @classmethod
-    def get_by_email(cls, data):
+    def get_by_email(cls, email):
         query = "SELECT * FROM users WHERE email = %(email)s;"
         #query = "SELECT * FROM users WHERE email = "lauraadrien@gmail.com";"
-        results = MySQLConnection(cls.DB).query_db(query, data)
-        print("data is", data)
+        results = MySQLConnection(cls.DB).query_db(query, {"email": email})
+        print("data is", email)
         print("inside check")
         print("qury is", query)
         print("query result is", results)
-        if results is False:
+        if results:
+            return User(results[0])
+        else:
             return False
-        return cls(results[0])  
 
     @classmethod
     def get_by_id(cls, id):
@@ -64,6 +65,7 @@ class User:
             is_valid = False
         elif not EMAIL_REGEX.match(user["email"]):
             flash("Invalid email format")
+            print(f"!!!!!!!!!{user['email']}")
             is_valid = False
         elif User.get_by_email(user["email"]):
             flash("Email already registered")

@@ -1,13 +1,14 @@
-from group_project.flask_app.config.mysqlconnector import (
+from flask_app.config.mysqlconnector import (
     MySQLConnection,
     connectToMySQL,
 )
-from group_project.flask_app.models.user import User
+from flask_app.models.user import User
 from flask import flash
 import re
 
 
 class Article:
+  
     DB = "group_project_schema"
 
     def __init__(self, data):

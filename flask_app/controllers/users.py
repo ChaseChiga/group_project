@@ -1,10 +1,10 @@
 from flask import render_template, redirect, request, session, flash
 
-from group_project.flask_app.models.article import Article
-from group_project.flask_app.models.user import User
+from flask_app.models.article import Article
+from flask_app.models.user import User
 
 
-from group_project.flask_app import app
+from flask_app import app
 from datetime import datetime
 
 

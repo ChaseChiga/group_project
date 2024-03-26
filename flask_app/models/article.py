@@ -105,7 +105,7 @@ class Article:
     @classmethod
     def one_article(cls,data):
         query = """
-                SELECT articles.id, articles.title,articles.catagory, articles.content, users.first_name,users.last_name, COUNT(favorites.user_id) AS 'favorites' 
+                SELECT articles.id, articles.title AS 'article_name',articles.catagory, articles.content AS 'article_content', users.first_name, users.last_name, COUNT(favorites.user_id) AS 'likes_counter' 
                 FROM articles
 				LEFT JOIN favorites ON articles.id = favorites.article_id
                 JOIN users ON users.id = articles.user_id
@@ -116,12 +116,12 @@ class Article:
         post = cls(results[0])
         for details in results:
             articles_post = {
-                'title': details['tiles'],
-                'catagory': details['catagory'],
-                'content': details['content'],
+                'title': details['article_name'],
+                'content': details['catagory'],
+                'content': details['article_content'],
                 'first_name': details['first_name'],
                 'last_name': details['last_name'],
-                'favorites': details['favorties']
+                'likes_counter': details['likes_counter']
             }
         post.articles.append(User(articles_post))
         return results[0]

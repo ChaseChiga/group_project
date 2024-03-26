@@ -80,6 +80,18 @@ class Article:
                 """
         results = MySQLConnection(cls.DB).query_db(query, data)
         return results
+    
+    @classmethod
+    def check_favorite(cls, data):
+        query = """ 
+                INSERT INTO favorites (user_id,article_id)
+                VALUE (%(user_id)s,%(articles_id)s)
+                """
+        results = MySQLConnection(cls.DB).query_db(query, data)
+        if results:
+            return True
+        else:
+            return False
 
     # READ
     # @classmethod

@@ -118,4 +118,13 @@ def delete_article(article_id):
     Article.delete(article_id)
     return redirect("/dashboard")
 
+@app.route("/article/like")
+def add_like():
+    if 'user_id' not in session:
+        return redirect('/logout')
     
+    if Article.check_favorite(request.form) == True:
+        Article.favorite_article(request.form)
+    else:
+        Article.unfavorite_article(request.form)
+    return redirect('/dashboard')

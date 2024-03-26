@@ -26,7 +26,6 @@ def register_user():
     print(pw_hash)
 
     data = {
-        
         "first_name": request.form["first_name"],
         "last_name": request.form["last_name"],
         "email": request.form["email"],
@@ -45,11 +44,11 @@ def register_user():
 def create_account():
     return render_template("register.html")
 
+
 @app.route("/login", methods=["POST"])
 def login():
- 
-    login_data = {"email": request.form["email"]}
-    user_in_db = User.get_by_email(login_data)
+
+    user_in_db = User.get_by_email(request.form["email"])
 
     if not user_in_db:
         flash("Invalid Email/Password")
@@ -64,9 +63,8 @@ def login():
 
     return redirect("/dashboard")
 
+
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
-
-

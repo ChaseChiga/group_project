@@ -23,9 +23,9 @@ def get_all_articles():
     return render_template("index.html", articles=articles)
 
 
-@app.route("/home")
-def home():
-    return render_template("login.html")
+# @app.route("/home")
+# def home():
+#     return render_template("login.html")
 
 
 @app.route("/create")

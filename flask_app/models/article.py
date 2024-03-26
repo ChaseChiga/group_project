@@ -1,8 +1,8 @@
-from group_project.flask_app.config.mysqlconnector import (
+from flask_app.config.mysqlconnector import (
     MySQLConnection,
     connectToMySQL,
 )
-from group_project.flask_app.models.user import User
+from flask_app.models.user import User
 from flask import flash
 import re
 

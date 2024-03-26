@@ -64,7 +64,7 @@ class Article:
     def favorite_article(cls, data):
         query = """ 
                 INSERT INTO favorites (user_id,article_id)
-                VALUE (%(user_id)s,%(articles_id)s)
+                VALUE (%(user_id)s,%(article_id)s)
                 """
         results = MySQLConnection(cls.DB).query_db(query, data)
         return results
@@ -76,7 +76,7 @@ class Article:
                 FROM favorites
                 WHERE user_id = %(user_id)s
                 AND
-                articles_id = %(article)s
+                article_id = %(article_id)s
                 """
         results = MySQLConnection(cls.DB).query_db(query, data)
         return results
@@ -84,9 +84,14 @@ class Article:
     @classmethod
     def check_favorite(cls, data):
         query = """ 
-                INSERT INTO favorites (user_id,article_id)
-                VALUE (%(user_id)s,%(articles_id)s)
+                SELECT *
+                From favorites
+                WHERE 
+                user_id = %(user_id)s
+                AND 
+                article_id = %(article_id)s
                 """
+        print(data)
         results = MySQLConnection(cls.DB).query_db(query, data)
         if results:
             return True

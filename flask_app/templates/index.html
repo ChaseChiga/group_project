@@ -45,7 +45,9 @@
                         </div>
                         <div class="col-md-1 d-flex">
                             <!-- --------------  Here is the form for the likes counter   ------------------ -->
-                            <form class="d-flex" action="/article/like">
+                            <form class="d-flex" action="/article/like" method="POST">
+                                <input type="hidden" name="user_id" value="{{user_id}}">
+                                <input type="hidden" name="article_id" value="{{article.id}}">
                                 <button class="btn btn-link" type="submit"><span class="material-symbols-outlined">favorite</span></button>
                                 <p>{{article.likes_counter}}</p>
                             </form>

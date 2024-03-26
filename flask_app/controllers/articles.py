@@ -20,7 +20,9 @@ def get_all_articles():
     articles = Article.get_all()
     print("this")
     print(articles)
-    return render_template("index.html", articles=articles)
+    user_id = session['user_id']
+    print(f"!!!!!!!!!{user_id}!!!!!!!!!!")
+    return render_template("index.html", articles=articles, user_id = user_id)
 
 
 @app.route("/home")
@@ -118,12 +120,13 @@ def delete_article(article_id):
     Article.delete(article_id)
     return redirect("/dashboard")
 
-@app.route("/article/like")
+@app.route("/article/like", methods=["POST"])
 def add_like():
     if 'user_id' not in session:
         return redirect('/logout')
-    
-    if Article.check_favorite(request.form) == True:
+    print(request.form)
+    print(Article.check_favorite(request.form))
+    if Article.check_favorite(request.form) != True:
         Article.favorite_article(request.form)
     else:
         Article.unfavorite_article(request.form)

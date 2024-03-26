@@ -12,37 +12,37 @@
     <div class="container-sm bg-light mt-5 rounded">
         <div class="row">
             <nav class="navbar navbar-dark bg-dark justify-content-between rounded p-2">
-                <a class="navbar-brand" href="">App Name</a>
-                <button class="btn btn-primary my-2 my-sm-0" type="submit">Logout</button>
+                <a class="navbar-brand" href="/dashboard">App Name</a>
+                <a href="/logout" class="btn btn-success">Logout</a>
             </nav>
         </div>
         <div class="row">
             <div class="text-end m-2">
-                <a href="" class="btn btn-success">Create A Blog</a>
+                <a href="/create" class="btn btn-success">Create A Blog</a>
             </div>
         </div>
-        {% for d in data %}
-        <div class="row">
-            <div class="col-md p-4">
-                <div class="text-center">
-                    <p class="display-5">{{d.article_name}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="container-sm m-5 p-2">
+        {% for article in articles %}
             <div class="row">
-                <div class="col-md-8">
-                    <p>By {{d.creator_name}}</p>
-                </div>
-                <div class="col-md d-flex">
-                    <a href=""><span class="material-symbols-outlined">favorite</span></a>
-                    <p>{{d.likes_counter}}</p>
+                <div class="col-md p-4">
+                    <div class="text-center">
+                        <p class="display-5">{{article.title}}</p>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-5 w-75">
-                <textarea name="" id="" cols="30" rows="10">{{d.article_content}}</textarea>
+            <div class="container-sm m-5 p-2">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>By {{ article.creator.first_name }} {{ article.creator.last_name }}</p>
+                    </div>
+                    <div class="col-md d-flex">
+                        <a href=""><span class="material-symbols-outlined">favorite</span></a>
+                        <p>{{article.likes_counter}}</p>
+                    </div>
+                </div>
+                <div class="row mt-5 w-75">
+                    <textarea name="content" id="" cols="30" rows="10">{{article.content}}</textarea>
+                </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </body>

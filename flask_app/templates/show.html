@@ -29,7 +29,6 @@
                 <a href="/create" class="btn btn-success">Create A Blog</a>
             </div>
         </div>
-       
             <div class="row">
                 <div class="col-md p-4">
                     <div class="text-center">
@@ -56,10 +55,13 @@
                     </div>
                 </div>
                 <div class="row mt-5 w-75">
-                    <textarea name="content" id="" cols="30" rows="10">{{article.content}}</textarea>
+
+                    <div class="bg-secondary rounded p-3">
+                        <p name="content">{{article.content}}</p>
+                    </div>
                 </div>
             </div>
-       
+
     </div>
 </body>
 </html>

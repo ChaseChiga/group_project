@@ -48,4 +48,5 @@ ALTER TABLE favorites
 ALTER TABLE favorites
   ADD CONSTRAINT FK_articles_TO_favorites
     FOREIGN KEY (article_id)
-    REFERENCES articles (id);
+    REFERENCES articles (id)
+    ON DELETE CASCADE;

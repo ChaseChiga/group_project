@@ -20,7 +20,7 @@
     <div class="container-sm bg-light mt-5 rounded">
         <div class="row">
             <nav class="navbar navbar-dark bg-dark justify-content-between rounded p-2">
-                <a class="navbar-brand lobster-regular" href="">SunnySide Stories</a>
+                <a class="navbar-brand lobster-regular" href="/dashboard">SunnySide Stories</a>
                 <a href="/logout" class="btn btn-success">Logout</a>
             </nav>
         </div>
@@ -32,41 +32,47 @@
         {% if articles %}
             {% for article in articles %}
                 <div class="row">
-                    <div class="col-md p-4">
+                    <div class="col-md p-1">
                         <div class="text-center">
-                            <a href="/articles/{{article.id}}" class="text-decoration-none text-dark">{{article.title }}</a>
+                            <a href="/articles/{{article.id}}" class="text-decoration-none text-dark text-uppercase h3">{{article.title }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="container-sm m-5 p-2">
                     <div class="row">
-                        <div class="col-md-8">
-                            <p>{{ article.creator.first_name }} {{ article.creator.last_name }}</p>
+
+                        <div class="col-md-4">
+                            <p>A Story by: {{ article.creator.first_name }} {{ article.creator.last_name }}</p>
                         </div>
-                        <div class="col-md-1 d-flex">
+
+                        <div class="col-md-4"> 
+                            {% if article.user_id == session["user_id"] %}
+                                <a class="btn btn-danger" href="/articles/{{article.id}}">View</a> |
+                                <a class="btn btn-warning" href="/articles/edit/{{article.id}}"> Edit</a> |
+                                <a class="btn btn-danger" href="/article/{{article.id}}/destroy">Delete</a>
+                            {% else %}
+                                <a href="/articles/{{article.id}}">View</a>
+                            {% endif %}
+                        </div>  
+
+
+
+                        <div class="col-md-1">
                             <!-- --------------  Here is the form for the likes counter   ------------------ -->
-                            <form class="d-flex" action="/article/like" method="POST">
+                            <form class="" action="/article/like" method="POST">
                                 <input type="hidden" name="user_id" value="{{user_id}}">
                                 <input type="hidden" name="article_id" value="{{article.id}}">
-                                <button class="btn btn-link" type="submit"><span class="material-symbols-outlined">favorite</span></button>
-                                <p>{{article.likes_counter}}</p>
+                                <div class="d-flex align-items-end">
+                                    <button class="btn btn-link" type="submit"><span class="material-symbols-outlined">favorite</span></button>
+                                    <p>{{article.likes_counter}}</p>
+                                </div>
                             </form>
                             <!-- --------------- End form for the likes counter ------------------------ -->
                         </div>
                     </div>
                     <div class="row">
-                        <span class="border-bottom border border-dark w-75"></span>
-                        
+                        <span class="border-bottom border border-dark w-75 mb-1"></span>
                     </div>
-                    <div>
-                        {% if article.user_id == session["user_id"] %}
-                            <a href="/articles/{{article.id}}">View</a> |
-                            <a href="/articles/edit/{{article.id}}"> Edit</a> |
-                            <a href="/article/{{article.id}}/destroy">Delete</a>
-                        {% else %}
-                            <a href="/articles/{{article.id}}">View</a>
-                        {% endif %}
-                    </div>    
                 </div>
             {% endfor %}
 

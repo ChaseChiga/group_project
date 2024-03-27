@@ -3,43 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Name</title>
+    <title>SunnySide Stories</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/style.css">
+
+    <!-- Link for new font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Edu+NSW+ACT+Foundation:wght@400..700&family=Lobster&display=swap" rel="stylesheet">
+
+    <!-- End link for new font -->
 </head>
 <body class="bgimg2">
     <div class="container-lg">
         <nav class="navbar navbar-light bg-light justify-content-between">
-            <a class="navbar-brand">App Name</a>
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Logout</button>
+            <a href="/dashboard" class="navbar-brand lobster-regular">SunnySide Stories</a>
+            <a href="/logout" class="btn btn-success">Logout</a>
         </nav>
         <div class="row">
             <div class="col-md bg-secondary rounded p-4">
                 <h2 class="text-center mt-2">New Blog</h2>
-                <form class="w-50 move_to_center" action="" method="">
-                    <input type="hidden" name="user.name" value="{{user.first_name}} {{user.last_name}}">
+                <form class="w-50 move_to_center" action="/create" method="post">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for m in messages %}
+                            <p class="text-danger">{{m}}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <input class="form-control mb-2" type="hidden" name="first_name" value="{{user.first_name}}">
+                    <input class="form-control mb-2" type="hidden" name="last_name" value="{{user.last_name}}">
                     <label for="article_name">Article Name</label>
-                    <input class="form-control mb-2" type="text" name="article_name">
+                    <input class="form-control mb-2" type="text" name="title">
                     <label for="catagory">Choose a Catagory Below</label>
                     <select class="form-control mb-2" name="catagory" id="">
                         <option value="Sports">Sports</option>
                         <option value="Fiction">Fiction</option>
                         <option value="Cars">Cars</option>
                     </select>
-                    <label for="story">Story</label>
-                    <textarea class="form-control" name="story" cols="30" rows="10"></textarea>
+                    <label for="content">Story</label>
+                    <textarea class="form-control" name="content" cols="30" rows="10"></textarea>
                     
                     <div class="text-end">
-                        <button class="mt-2 mb-3 btn btn-success">Create New Blog</button>
+                        <button type="submit" class="btn btn-success">Create a Blog</button>
                     </div>
                 </form>
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for m in messages %}
-                            <p class="text-danger">{{m}}</p>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
+               
             </div>
         </div>
     </div>

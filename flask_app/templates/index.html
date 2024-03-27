@@ -3,48 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SunnySide Stories</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <!-- Link for new font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Edu+NSW+ACT+Foundation:wght@400..700&family=Lobster&display=swap" rel="stylesheet">
+
+    <!-- End link for new font -->
+
 </head>
 <body class="bgimg3">
     <div class="container-sm bg-light mt-5 rounded">
         <div class="row">
             <nav class="navbar navbar-dark bg-dark justify-content-between rounded p-2">
-                <a class="navbar-brand" href="">App Name</a>
-                <button class="btn btn-primary my-2 my-sm-0" type="submit">Logout</button>
+                <a class="navbar-brand lobster-regular" href="/dashboard">SunnySide Stories</a>
+                <a href="/logout" class="btn btn-success">Logout</a>
             </nav>
         </div>
         <div class="row">
             <div class="text-end m-2">
-                <a href="" class="btn btn-success">Create A Blog</a>
+                <a href="/create" class="btn btn-success">Create A Blog</a>
             </div>
         </div>
-        {% if data %}
-            {% for d in data %}
-        <div class="row">
-            <div class="col-md p-4">
-                <div class="text-center">
-                    <a href="" class="text-decoration-none text-dark">{{d.article_name}}</a>
+        {% if articles %}
+            {% for article in articles %}
+                <div class="row">
+                    <div class="col-md p-1">
+                        <div class="text-center">
+                            <a href="/articles/{{article.id}}" class="text-decoration-none text-dark text-uppercase h3">{{article.title }}</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container-sm m-5 p-2">
-            <div class="row">
-                <div class="col-md-8">
-                    <p>{{d.creator_name}}</p>
+                <div class="container-sm m-5 p-2">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <p>A Story by: {{ article.creator.first_name }} {{ article.creator.last_name }}</p>
+                        </div>
+
+                        <div class="col-md-4"> 
+                            {% if article.user_id == session["user_id"] %}
+                                <a class="btn btn-danger" href="/articles/{{article.id}}">View</a> |
+                                <a class="btn btn-warning" href="/articles/edit/{{article.id}}"> Edit</a> |
+                                <a class="btn btn-danger" href="/article/{{article.id}}/destroy">Delete</a>
+                            {% else %}
+                                <a class="btn btn-danger" href="/articles/{{article.id}}">View</a>
+                            {% endif %}
+                        </div>  
+
+
+
+                        <div class="col-md-1">
+                            <!-- --------------  Here is the form for the likes counter   ------------------ -->
+                            <form class="" action="/article/like" method="POST">
+                                <input type="hidden" name="user_id" value="{{user_id}}">
+                                <input type="hidden" name="article_id" value="{{article.id}}">
+                                <div class="d-flex align-items-end">
+                                    <button class="btn btn-link" type="submit"><span class="material-symbols-outlined">favorite</span></button>
+                                    <p>{{article.likes_counter}}</p>
+                                </div>
+                            </form>
+                            <!-- --------------- End form for the likes counter ------------------------ -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="border-bottom border border-dark w-75 mb-1"></span>
+                    </div>
                 </div>
-                <div class="col-md-1 d-flex">
-                    <a href=""><span class="material-symbols-outlined">favorite</span></a>
-                    <p>{{d.likes_counter}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <span class="border-bottom border border-dark w-75"></span>
-            </div>
-        </div>
             {% endfor %}
+
         {% else %}
             <p>No Data</p>
         {% endif %}

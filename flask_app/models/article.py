@@ -268,6 +268,7 @@ class Article:
             is_valid = False
         if len(article["content"]) < 1:
             flash("Please provided your article details")
+            is_valid = False
         elif len(article["content"]) > 500:
             flash("Max Character limit is 500")
             is_valid = False

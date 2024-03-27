@@ -72,7 +72,7 @@ def get_one(article_id):
     article = Article.get_by_id(article_id)
     print("inside display page")
     print(article)
-    return render_template("show.html", article=article)
+    return render_template("show.html", article=article, user_id=user_id)
 
 
 # @app.route("/create", methods=["POST"])

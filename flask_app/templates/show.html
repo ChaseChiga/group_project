@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md p-4">
                     <div class="text-center">
-                        <p class="display-5">{{article.title}}</p>
+                        <p class=" text-dark text-uppercase h3">{{article.title}}</p>
                     </div>
                 </div>
             </div>
@@ -42,9 +42,17 @@
                     <div class="col-md-8">
                         <p>By {{ article.creator.first_name }} {{ article.creator.last_name }}</p>
                     </div>
-                    <div class="col-md d-flex">
-                        <a href=""><span class="material-symbols-outlined">favorite</span></a>
-                        <p>{{article.likes_counter}}</p>
+                    <div class="col-md-1">
+                        <!-- --------------  Here is the form for the likes counter   ------------------ -->
+                        <form class="" action="/article/like" method="POST">
+                            <input type="hidden" name="user_id" value="{{user_id}}">
+                            <input type="hidden" name="article_id" value="{{article.id}}">
+                            <div class="d-flex align-items-end">
+                                <button class="btn btn-link" type="submit"><span class="material-symbols-outlined">favorite</span></button>
+                                <p>{{article.likes_counter}}</p>
+                            </div>
+                        </form>
+                        <!-- --------------- End form for the likes counter ------------------------ -->
                     </div>
                 </div>
                 <div class="row mt-5 w-75">
